@@ -18,12 +18,13 @@ class SignInWithButtonFlutter extends StatelessWidget {
       onTap: () {
         onPressed();
       },
-      child: Container(
+      child: AnimatedContainer(
         padding: EdgeInsets.symmetric(horizontal: 0, vertical: 5),
         decoration: BoxDecoration(
           border: Border.all(color: Color(0xFF111111), width: 1),
           borderRadius: BorderRadius.all(Radius.circular(24)),
         ),
+        duration: Duration(microseconds: 1000),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
