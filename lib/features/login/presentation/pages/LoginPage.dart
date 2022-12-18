@@ -1,20 +1,40 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:uni_talk/common/app_colors.dart';
 import 'package:uni_talk/features/login/presentation/widgets/BlueButton.dart';
 import 'package:animate_gradient/animate_gradient.dart';
 import 'package:uni_talk/features/login/presentation/widgets/sign_in_with_widgets.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class StartPage extends StatelessWidget {
   const StartPage({Key? key}) : super(key: key);
+
+  Future<UserCredential> signInWithGoogle() async {
+    // Trigger the authentication flow
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+    // Obtain the auth details from the request
+    final GoogleSignInAuthentication? googleAuth =
+        await googleUser?.authentication;
+
+    // Create a new credential
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
+
+    // Once signed in, return the UserCredential
+    return await FirebaseAuth.instance.signInWithCredential(credential);
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: AnimateGradient(
         duration: Duration(seconds: 10),
-        primaryColors: [AppColors.blueBackground, AppColors.blue2Background],
-        secondaryColors: [AppColors.blue3Background, AppColors.blue4Background],
+        primaryColors: [AppColors.blueBackground, AppColors.whiteBackground],
+        secondaryColors: [AppColors.blue3Background, AppColors.whiteBackground],
         child: SafeArea(
           child: Column(children: [
             Expanded(flex: 1, child: buildHeader()),
@@ -116,7 +136,8 @@ class StartPage extends StatelessWidget {
                 ),
               )),
           Flexible(flex: 2, child: Container()),
-          Flexible(flex: 5,
+          Flexible(
+            flex: 5,
             child: Container(
               width: MediaQuery.of(context).size.width * 0.8,
               child: Column(
@@ -124,7 +145,14 @@ class StartPage extends StatelessWidget {
                   Flexible(
                     flex: 4,
                     child: SignInWithButtonFlutter(
-                        onPressed: () {},
+                        onPressed: () {
+                          signInWithGoogle().then((value){
+                            var userCredential = value.credential;
+                            if(userCredential!=null){
+                              FirebaseAuth.instance.signInWithCredential(userCredential);
+                            }
+                          });
+                        },
                         title: "Google",
                         assetName: "assets/images/google.svg"),
                   ),

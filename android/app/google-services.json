@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "701324178164",
+    "project_id": "unitalk-c171e",
+    "storage_bucket": "unitalk-c171e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:701324178164:android:d3ff7099d9e1b188e264a1",
+        "android_client_info": {
+          "package_name": "com.uniteam.uni_talk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "701324178164-5kui1kbsafifonic4anqa2b4kcgeht3o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByeJZN-GzOUqZl2aRjB8SxDLLU6PR79B8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "701324178164-5kui1kbsafifonic4anqa2b4kcgeht3o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

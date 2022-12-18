@@ -1,6 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.uniteam.uni_talk">
-   <application
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
         android:label="UniTalk"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
