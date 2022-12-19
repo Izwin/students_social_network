@@ -1,4 +1,8 @@
 import "package:equatable/equatable.dart";
+import 'package:uni_talk/features/login/data/models/faculty_model.dart';
+import 'package:uni_talk/features/login/data/models/university_model.dart';
+import 'package:uni_talk/features/login/domain/entities/faculty.dart';
+import 'package:uni_talk/features/login/domain/entities/university.dart';
 import 'package:uni_talk/features/login/domain/entities/user.dart';
 
 class StudentModel extends Student {
@@ -7,9 +11,11 @@ class StudentModel extends Student {
     required super.surname,
     required super.username,
     required super.password,
-    required super.faculty,
+    required super.faculty_id,
+    required super.faculty_name,
     required super.language,
-    required super.university,
+    required super.university_name,
+    required super.university_id,
   });
 
   factory StudentModel.fromJson(Map<String, dynamic> json) {
@@ -18,9 +24,11 @@ class StudentModel extends Student {
         surname: json["surname"],
         username: json["username"],
         password: json["password"],
-        faculty: json["faculty"],
+        faculty_id: json["faculty_id"],
+        faculty_name: json["faculty_name"],
         language: json["language"],
-        university: json["university"]);
+        university_id: json["university_id"],
+        university_name: json["university_name"]);
   }
 
   Map<String, dynamic> toJson() {
@@ -29,19 +37,24 @@ class StudentModel extends Student {
       "surname": surname,
       "username": username,
       "password": password,
-      "faculty": faculty,
+      "faculty_id": faculty_id,
+      "faculty_name": faculty_name,
       "language": language,
-      "university": university
+      "university_id": university_id,
+      "university_name": university_name
     };
   }
 
-  factory StudentModel.fromStudent(Student student){
-    return StudentModel(name: student.name,
+  factory StudentModel.fromStudent(Student student) {
+    return StudentModel(
+        name: student.name,
         surname: student.surname,
         username: student.username,
         password: student.password,
-        faculty: student.faculty,
+        faculty_name: student.faculty_name,
+        faculty_id: student.faculty_id,
         language: student.language,
-        university: student.university);
+        university_name: student.university_name,
+        university_id: student.university_id);
   }
 }

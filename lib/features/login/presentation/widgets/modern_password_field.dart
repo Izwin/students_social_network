@@ -2,11 +2,16 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class ModernPasswordField extends StatefulWidget {
-  ModernPasswordField({Key? key, required this.labelTitle, required this.hint})
+  ModernPasswordField(
+      {Key? key,
+      required this.labelTitle,
+      required this.hint,
+      required this.textEditingController})
       : super(key: key);
 
   String labelTitle;
   String hint;
+  TextEditingController textEditingController;
 
   @override
   State<ModernPasswordField> createState() => _ModernPasswordFieldState();
@@ -30,6 +35,7 @@ class _ModernPasswordFieldState extends State<ModernPasswordField> {
         ),
         const Padding(padding: EdgeInsets.all(5)),
         TextField(
+          controller: widget.textEditingController,
           style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 18),
           obscureText: !_passwordVisible,
           decoration: InputDecoration(

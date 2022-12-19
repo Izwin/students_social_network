@@ -17,8 +17,10 @@ abstract class User extends Equatable {
 }
 
 class Student extends User {
-  University university;
-  Faculty faculty;
+  String university_name;
+  String university_id;
+  String faculty_name;
+  String faculty_id;
   String language;
 
   Student({
@@ -26,11 +28,13 @@ class Student extends User {
     required super.password,
     required super.surname,
     required super.username,
-    required this.university,
+    required this.university_id,
+    required this.university_name,
     required this.language,
-    required this.faculty,
+    required this.faculty_id,
+    required this.faculty_name,
   });
 
   @override
-  List<Object?> get props => [university, faculty, language];
+  List<Object?> get props => [university_name,university_id, faculty_id,faculty_name, language];
 }

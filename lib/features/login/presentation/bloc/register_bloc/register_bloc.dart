@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:uni_talk/core/error/failure.dart';
 import 'package:uni_talk/features/login/domain/entities/user.dart';
 import 'package:uni_talk/features/login/domain/use_cases/register.dart';
 import 'package:uni_talk/features/login/presentation/bloc/register_bloc/register_event.dart';
@@ -17,7 +18,9 @@ class RegisterBloc extends Bloc<RegisterEvent,RegisterState>{
     emit(RegisterLoading());
     var result = await registerUseCase.call(RegisterParams(student: event.student));
     result.fold((l){
-      emit(RegisterError(message: ""));
+      if(l is UserAlreadyExistsFailure){
+        emit(UserExistsError());
+      }
     }, (r){
       emit(RegisterCompleted());
     });

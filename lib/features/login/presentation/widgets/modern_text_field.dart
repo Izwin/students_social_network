@@ -2,8 +2,14 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class ModernTextField extends StatelessWidget {
-  ModernTextField({Key? key, required this.labelTitle, required this.hint,}) : super(key: key);
+  ModernTextField(
+      {Key? key,
+      required this.labelTitle,
+      required this.hint,
+      required this.textEditingController})
+      : super(key: key);
 
+  TextEditingController textEditingController;
   String labelTitle;
   String hint;
 
@@ -22,6 +28,7 @@ class ModernTextField extends StatelessWidget {
         ),
         const Padding(padding: EdgeInsets.all(5)),
         TextField(
+          controller: textEditingController,
           style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 18),
           decoration: InputDecoration(
             filled: true,
@@ -31,11 +38,11 @@ class ModernTextField extends StatelessWidget {
             focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(15.0),
                 borderSide:
-                const BorderSide(color: Color(0xFFF6F8FE), width: 1)),
+                    const BorderSide(color: Color(0xFFF6F8FE), width: 1)),
             enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(15.0),
                 borderSide:
-                const BorderSide(color: Color(0xFFF6F8FE), width: 1)),
+                    const BorderSide(color: Color(0xFFF6F8FE), width: 1)),
           ),
         ),
       ],

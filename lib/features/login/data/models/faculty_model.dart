@@ -12,4 +12,9 @@ class FacultyModel extends Faculty{
       "name" : name
     };
   }
+
+
+  factory FacultyModel.fromFaculty(Faculty faculty){
+    return FacultyModel(name: faculty.name);
+  }
 }

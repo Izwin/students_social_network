@@ -4,8 +4,30 @@ import 'package:uni_talk/features/login/presentation/widgets/modern_password_fie
 import 'package:uni_talk/features/login/presentation/widgets/modern_text_field.dart';
 import 'package:uni_talk/features/login/presentation/widgets/next_button.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  late TextEditingController username;
+  late TextEditingController password;
+
+  @override
+  void initState() {
+    super.initState();
+    username = TextEditingController();
+    password = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    username.dispose();
+    password.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +42,8 @@ class LoginPage extends StatelessWidget {
           title: Text(
             'Sign In',
             style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: MediaQuery.of(context).size.width / 20.8333333333,
+              fontWeight: FontWeight.bold,
+              fontSize: MediaQuery.of(context).size.width / 20.8333333333,
             ),
           ),
           centerTitle: true,
@@ -49,8 +71,9 @@ class LoginPage extends StatelessWidget {
                       Text(
                         "Enter your username and password",
                         style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                          fontSize: MediaQuery.of(context).size.width / 26.7857142857,
+                          fontWeight: FontWeight.w500,
+                          fontSize:
+                              MediaQuery.of(context).size.width / 26.7857142857,
                         ),
                       ),
                     ],
@@ -59,42 +82,48 @@ class LoginPage extends StatelessWidget {
                 const Padding(padding: EdgeInsets.all(15)),
                 Column(
                   children: [
-                    ModernTextField(labelTitle: 'Nickname', hint: 'Enter your nickname'),
+                    ModernTextField(
+                      textEditingController: username,
+                        labelTitle: 'Username', hint: 'Enter your username'),
                     const Padding(padding: EdgeInsets.all(10)),
-                    ModernPasswordField(labelTitle: 'Password', hint: 'Enter your password',),
+                    ModernPasswordField(
+                      textEditingController: password,
+                      labelTitle: 'Password',
+                      hint: 'Enter your password',
+                    ),
                     const Padding(padding: EdgeInsets.all(10)),
                     Row(
                       children: [
                         Expanded(
-                            child: NextButton(
-                                onPressed: () {}, title: 'Sign Up')),
+                            child:
+                                NextButton(onPressed: () {}, title: 'Sign Up')),
                       ],
                     ),
                   ],
                 ),
-                Expanded(child:
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          Text('Already have an account? ',
-                            style: TextStyle(
+                Expanded(
+                    child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Text(
+                          'Already have an account? ',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        Text(
+                          'Login',
+                          style: TextStyle(
                               fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                          Text('Login',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                color: AppColors.darkOrange
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  )
-                ),
+                              color: AppColors.darkOrange),
+                        ),
+                      ],
+                    ),
+                  ],
+                )),
               ],
             ),
           ),
