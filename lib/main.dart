@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:uni_talk/common/app_colors.dart';
-import 'package:uni_talk/features/login/presentation/pages/LoginPage.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
+import 'package:uni_talk/features/login/presentation/pages/login_page.dart';
+import 'package:uni_talk/features/login/presentation/pages/registration_page.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
   runApp(const MyApp());
 }
 
@@ -19,13 +14,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'UniTalk',
       theme: ThemeData(
-        fontFamily: "Plus",
-        textTheme: Theme.of(context).textTheme.apply(bodyColor: Colors.white,fontFamily: "Plus"),
-
+        fontFamily: "Jakarta",
+        textTheme: Theme.of(context).textTheme.apply(bodyColor: Colors.white,fontFamily: "Jakarta"),
       ),
-      home: StartPage(),
+      home: const LoginPage(),
     );
   }
 }
