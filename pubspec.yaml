@@ -20,7 +20,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: '>=2.18.5 <3.0.0'
+  sdk: '>=2.18.2 <3.0.0'
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -93,6 +93,24 @@ flutter:
     - family: Plus
       fonts:
         - asset: fonts/plus.ttf
+
+    - family: Jakarta
+      fonts:
+        - asset: fonts/plus_jakarta_sans/PlusJakartaSans-Bold.ttf
+        - asset: fonts/plus_jakarta_sans/PlusJakartaSans-BoldItalic.ttf
+        - asset: fonts/plus_jakarta_sans/PlusJakartaSans-ExtraBold.ttf
+        - asset: fonts/plus_jakarta_sans/PlusJakartaSans-ExtraBoldItalic.ttf
+        - asset: fonts/plus_jakarta_sans/PlusJakartaSans-ExtraLight.ttf
+        - asset: fonts/plus_jakarta_sans/PlusJakartaSans-ExtraLightItalic.ttf
+        - asset: fonts/plus_jakarta_sans/PlusJakartaSans-Italic.ttf
+        - asset: fonts/plus_jakarta_sans/PlusJakartaSans-Light.ttf
+        - asset: fonts/plus_jakarta_sans/PlusJakartaSans-LightItalic.ttf
+        - asset: fonts/plus_jakarta_sans/PlusJakartaSans-Medium.ttf
+        - asset: fonts/plus_jakarta_sans/PlusJakartaSans-MediumItalic.ttf
+        - asset: fonts/plus_jakarta_sans/PlusJakartaSans-Regular.ttf
+        - asset: fonts/plus_jakarta_sans/PlusJakartaSans-SemiBold.ttf
+        - asset: fonts/plus_jakarta_sans/PlusJakartaSans-SemiBoldItalic.ttf
+
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
