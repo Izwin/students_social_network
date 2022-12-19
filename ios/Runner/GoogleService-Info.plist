@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>701324178164-o801l0h227b8mouni266u05bc6b9re90.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.701324178164-o801l0h227b8mouni266u05bc6b9re90</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBoXh_I4QmsydX5B7jcZ06u3TXcUdNV-bI</string>
+	<key>GCM_SENDER_ID</key>
+	<string>701324178164</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.uniteam.uniTalk</string>
+	<key>PROJECT_ID</key>
+	<string>unitalk-c171e</string>
+	<key>STORAGE_BUCKET</key>
+	<string>unitalk-c171e.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:701324178164:ios:fbc00fa304023e14e264a1</string>
+</dict>
+</plist>
