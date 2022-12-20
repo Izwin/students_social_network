@@ -3,12 +3,13 @@ import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uni_talk/core/platform/network_info.dart';
-import 'package:uni_talk/features/login/data/data_sources/firebase_datasource_dart';
 import 'package:uni_talk/features/login/data/data_sources/local_repository.dart';
 import 'package:uni_talk/features/login/data/repositories/user_repository_impl.dart';
 import 'package:uni_talk/features/login/domain/repositories/user_repository.dart';
 import 'package:uni_talk/features/login/domain/use_cases/register.dart';
 import 'package:uni_talk/features/login/presentation/bloc/register_bloc/register_bloc.dart';
+
+import 'features/login/data/data_sources/firebase_datasource.dart';
 
 final sl = GetIt.instance;
 

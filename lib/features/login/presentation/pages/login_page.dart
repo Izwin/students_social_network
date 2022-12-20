@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:uni_talk/common/app_colors.dart';
 import 'package:uni_talk/features/login/presentation/widgets/modern_password_field.dart';
 import 'package:uni_talk/features/login/presentation/widgets/modern_text_field.dart';
@@ -47,7 +48,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
           ),
           centerTitle: true,
-          leading: const Icon(Icons.arrow_back_ios_rounded),
+          leading: IconButton(icon: Icon(Icons.arrow_back_ios_rounded), onPressed: () { Get.back(); },),
         ),
         body: WillPopScope(
           onWillPop: () async {

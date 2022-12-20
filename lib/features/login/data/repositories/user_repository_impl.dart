@@ -2,12 +2,13 @@ import 'package:dartz/dartz.dart';
 import 'package:uni_talk/core/error/failure.dart';
 import 'package:uni_talk/core/exceptions.dart';
 import 'package:uni_talk/core/platform/network_info.dart';
-import 'package:uni_talk/features/login/data/data_sources/firebase_datasource_dart';
 import 'package:uni_talk/features/login/data/data_sources/local_repository.dart';
 import 'package:uni_talk/features/login/data/models/user_creds_model.dart';
 import 'package:uni_talk/features/login/data/models/user_model.dart';
 import 'package:uni_talk/features/login/domain/entities/user.dart';
 import 'package:uni_talk/features/login/domain/repositories/user_repository.dart';
+
+import '../data_sources/firebase_datasource.dart';
 
 class UserRepositoryImpl extends UserRepository {
   final FirebaseRepository firebaseRepository;

@@ -10,7 +10,7 @@ class ModernTextField extends StatelessWidget {
       : super(key: key);
 
   TextEditingController textEditingController;
-  String labelTitle;
+  String? labelTitle;
   String hint;
 
   @override
@@ -18,16 +18,17 @@ class ModernTextField extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          labelTitle,
+        labelTitle != null ? Text(
+          labelTitle!,
           style: const TextStyle(
             fontWeight: FontWeight.w500,
             fontSize: 14,
             color: Color(0xFF9CA4AB),
           ),
-        ),
+        ): Container(),
         const Padding(padding: EdgeInsets.all(5)),
         TextField(
+
           controller: textEditingController,
           style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 18),
           decoration: InputDecoration(

@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:uni_talk/common/app_colors.dart';
 import 'package:uni_talk/core/exceptions.dart';
 import 'package:uni_talk/features/login/domain/entities/faculty.dart';
@@ -10,6 +12,10 @@ import 'package:uni_talk/features/login/domain/use_cases/register.dart';
 import 'package:uni_talk/features/login/presentation/bloc/register_bloc/register_bloc.dart';
 import 'package:uni_talk/features/login/presentation/bloc/register_bloc/register_event.dart';
 import 'package:uni_talk/features/login/presentation/bloc/register_bloc/register_state.dart';
+import 'package:uni_talk/features/login/presentation/pages/login_page.dart';
+import 'package:uni_talk/features/login/presentation/pages/registration_introduction.dart';
+import 'package:uni_talk/features/login/presentation/pages/registration_name.dart';
+import 'package:uni_talk/features/login/presentation/pages/registration_university.dart';
 import 'package:uni_talk/features/login/presentation/widgets/modern_password_field.dart';
 import 'package:uni_talk/features/login/presentation/widgets/modern_text_field.dart';
 import 'package:uni_talk/features/login/presentation/widgets/next_button.dart';
@@ -32,6 +38,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
   late TextEditingController _usernameController;
   late TextEditingController _passwordController;
   late TextEditingController _confirmPasswordController;
+  late PageController pageController;
 
   void _signUpButton(BuildContext context) {
     var bloc = context.read<RegisterBloc>();
@@ -60,6 +67,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
     _usernameController = TextEditingController();
     _passwordController = TextEditingController();
     _confirmPasswordController = TextEditingController();
+    pageController = PageController(initialPage: 0);
   }
 
   @override
@@ -69,6 +77,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
     _usernameController.dispose();
     _passwordController.dispose();
     _confirmPasswordController.dispose();
+    pageController.dispose();
     super.dispose();
   }
 
@@ -79,21 +88,22 @@ class _RegistrationPageState extends State<RegistrationPage> {
         return false; // Если перейти назад.
       },
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: AppColors.blackBackground,
-        appBar: AppBar(
-          backgroundColor: AppColors.blackBackground,
-          title: Text(
-            'Sign Up',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: MediaQuery.of(context).size.width / 20.8333333333,
-            ),
-          ),
-          centerTitle: true,
-          leading: widget.showLeading
-              ? const Icon(Icons.arrow_back_ios_rounded)
-              : null,
-        ),
+        // appBar: AppBar(
+        //   backgroundColor: AppColors.blackBackground,
+        //   title: Text(
+        //     'Sign Up',
+        //     style: TextStyle(
+        //       fontWeight: FontWeight.bold,
+        //       fontSize: MediaQuery.of(context).size.width / 20.8333333333,
+        //     ),
+        //   ),
+        //   centerTitle: true,
+        //   leading: widget.showLeading
+        //       ? const Icon(Icons.arrow_back_ios_rounded)
+        //       : null,
+        // ),
         body: BlocConsumer<RegisterBloc, RegisterState>(
           listener: (context, state) {
             if (state is UserExistsError) {
@@ -102,7 +112,55 @@ class _RegistrationPageState extends State<RegistrationPage> {
           },
           builder: (context, state) {
             if (state is RegisterStarted) {
-              // TODO основной экран
+              return Stack(
+                children: [
+
+                  PageView(
+                    controller: pageController,
+                    children: [
+                      RegistrationIntroduction(
+                        onNextClicked: () {
+                          pageController.animateToPage(
+                              pageController.page!.toInt() + 1,
+                              duration: Duration(milliseconds: 500),
+                              curve: Curves.linearToEaseOut);
+                        },
+                      ),
+                      RegistrationNamePage(
+                        nameEditingController: _firstNameController,
+                        surnameEditingController: _lastNameController,
+                        onNextClicked: () {
+                          pageController.animateToPage(
+                              pageController.page!.toInt() + 1,
+                              duration: Duration(milliseconds: 500),
+                              curve: Curves.linearToEaseOut);
+                        },
+                      ),
+                      RegistrationUniversityPage(
+                          onNextClicked: (
+                              {String universityValue = "",
+                              String facultyValue = ""}) {})
+                    ],
+                  ),
+
+
+                  Align(
+                      alignment: AlignmentDirectional.bottomCenter,
+                      child: Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: SmoothPageIndicator(
+                          effect: JumpingDotEffect(
+                              verticalOffset: 20,
+                              dotHeight: 12,
+                              dotWidth: 12,
+                              dotColor: Color(0x33FFFFFF),
+                              activeDotColor: Colors.white),
+                          count: 3,
+                          controller: pageController,
+                        ),
+                      )),
+                ],
+              );
             } else if (state is RegisterLoading) {
               // TODO экран загрузки
             }
@@ -182,18 +240,23 @@ class _RegistrationPageState extends State<RegistrationPage> {
                             const Padding(padding: EdgeInsets.all(10)),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
-                              children: const [
+                              children: [
                                 Text(
                                   'Already have an account? ',
                                   style: TextStyle(
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
-                                Text(
-                                  'Login',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      color: AppColors.darkOrange),
+                                GestureDetector(
+                                  onTap: () {
+                                    Get.to(() => LoginPage());
+                                  },
+                                  child: Text(
+                                    'Login',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w600,
+                                        color: AppColors.darkOrange),
+                                  ),
                                 ),
                               ],
                             ),

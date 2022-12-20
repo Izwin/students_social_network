@@ -12,11 +12,12 @@ class NextButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 60,
+      width: MediaQuery.of(context).size.width,
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
             shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(25))),
+                borderRadius: BorderRadius.all(Radius.circular(10))),
             backgroundColor: AppColors.orange),
         child: Text(
           title,
